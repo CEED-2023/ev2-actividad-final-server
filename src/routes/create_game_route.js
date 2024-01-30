@@ -2,7 +2,6 @@ import Game from "../game/game.js"
 import randomId from "../game/random_id.js"
 import games from "../lib/game_list.js"
 
-
 const SETTINGS = {
   'EASY': { height: 9, width: 9, mines: 10 },
   'MEDIUM': { height: 16, width: 16, mines: 40 },

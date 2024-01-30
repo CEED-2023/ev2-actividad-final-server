@@ -8,6 +8,7 @@ const PORT = process.env.PORT || DEFAULT_PORT // Heroku assigns you a port
 import delayMiddleware from './middleware/delay_middleware.js'
 
 import createGame from './routes/create_game_route.js'
+import playCell from './routes/play_cell_route.js'
 
 const fastify = Fastify({
   logger: true
@@ -25,8 +26,15 @@ const MAX_DELAY = 2000
 const EXCEPTIONS = [/.*\/docs\//]
 fastify.addHook('onRequest', delayMiddleware(MIN_DELAY, MAX_DELAY, EXCEPTIONS))
 
+// Data for testing
+import Game from "./game/game.js"
+import games from "./lib/game_list.js"
+const game = new Game('antonio', 10, 10, 10)
+games.set('5555', game)
+
 try {
   fastify.register(createGame)
+  fastify.register(playCell)
 
   fastify.listen({ port: PORT, host: '0.0.0.0' })
 

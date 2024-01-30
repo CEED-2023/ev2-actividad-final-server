@@ -67,24 +67,24 @@ class Game {
   get board() {
     let lines = []
     for (let row = 0; row < this.#height; row++) {
-      lines.push(this.#board[row].map(c => c.content).join(' '))
+      lines.push(this.#board[row].join(' '))
     }
     return lines
   }
 
-  #checkMine(cell, player) {
+  #checkMine(cell) {
     if(cell.content !== MINE_CHARACTER) return
-    player.state = GAME_OVER
+    this.#state = GAME_OVER
     throw new MineTriggered()
   }
 
-  play(playerName, row, col) {
+  play(row, col) {
     // The game will start on the first click
     if(this.#state == WAITING_FIRST_MOVE) {
       console.log('Initializing game')
       this.initialize(row, col)
       this.#state = PLAYING
-      return this.#board[row][col].content
+      return this.#board[row][col]
     }
 
     if(this.#state !== PLAYING) throw new GameNotInProgress()
@@ -92,7 +92,9 @@ class Game {
     const cell = this.#board[row][col]
     this.#checkMine(cell)
 
-    return cell.content
+    // TODO: if all cells are revealed, game is over
+
+    return cell
   }
 
   // DEBUG: for reseting game while testing
