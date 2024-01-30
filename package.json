@@ -1,0 +1,22 @@
+{
+  "name": "ev2-actividad-final-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:CEED-2023/ev2-actividad-final-server.git",
+  "author": "Alvaro Maceda <alvaro@alvaromaceda.es>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "lint": "eslint 'src/**/*.{js,jsx}'"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.5.0",
+    "@fastify/websocket": "^8.3.1",
+    "fastify": "^4.25.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.2"
+  }
+}
