@@ -3,8 +3,7 @@ import {
   initializeMinesweeper
 } from './minesweeper.js'
 import {
-  GameNotInProgress,
-  MineTriggered
+  GameNotInProgress
 } from './game_exceptions.js'
 
 const WAITING_FIRST_MOVE = 'WAITING_FOR_PLAYERS'
@@ -73,9 +72,9 @@ class Game {
   }
 
   #checkMine(cell) {
-    if(cell.content !== MINE_CHARACTER) return
+    if(cell !== MINE_CHARACTER) return
     this.#state = GAME_OVER
-    throw new MineTriggered()
+    // throw new MineTriggered()
   }
 
   play(row, col) {

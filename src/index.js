@@ -36,6 +36,9 @@ try {
   fastify.register(createGame)
   fastify.register(revealCell)
 
+  console.log('*************************************')
+  console.log('**     TODO: DELETE GAMES!!!       **')
+  console.log('*************************************')
   fastify.listen({ port: PORT, host: '0.0.0.0' })
 
 } catch (err) {
