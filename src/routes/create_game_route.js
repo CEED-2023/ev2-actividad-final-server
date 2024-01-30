@@ -1,6 +1,6 @@
 import Game from "../game/game.js"
 import randomId from "../game/random_id.js"
-
+import games from "../lib/game_list.js"
 
 
 const SETTINGS = {
@@ -26,7 +26,7 @@ async function routes(fastify, _options) {
 
         const id = randomId()
         const game = new Game(player, height, width, mines)
-        // TO-DO: list of games
+        games.set(id, game)
 
         console.log(`Game ${id} created by ${player}`)
 
