@@ -26,19 +26,10 @@ const MAX_DELAY = 2000
 const EXCEPTIONS = [/.*\/docs\//]
 fastify.addHook('onRequest', delayMiddleware(MIN_DELAY, MAX_DELAY, EXCEPTIONS))
 
-// Data for testing
-import Game from "./game/game.js"
-import games from "./lib/game_list.js"
-const game = new Game('antonio', 9, 9, 10)
-games.set('5555', game)
-
 try {
   fastify.register(createGame)
   fastify.register(revealCell)
 
-  console.log('*************************************')
-  console.log('**     TODO: DELETE GAMES!!!       **')
-  console.log('*************************************')
   fastify.listen({ port: PORT, host: '0.0.0.0' })
 
 } catch (err) {

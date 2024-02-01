@@ -25,7 +25,7 @@ async function routes(fastify, _options) {
 
         const id = randomId()
         const game = new Game(player, height, width, mines)
-        games.set(id, game)
+        games.add(id, game)
 
         console.log(`Game ${id} created by ${player}`)
 

@@ -8,8 +8,9 @@ async function routes(fastify, _options) {
     async (request, reply) => {
       const requestBody = request.body
       const { row, col } = requestBody
+      const gameId = request.params.id
 
-      const game = games.get(request.params.id)
+      const game = games.get(gameId)
 
       if(!game) return reply.send({ success: false, error: 'Game not found' })
       if(game.creator !== request.params.player) return reply.send({ success: false, error: 'Game not found' })
@@ -21,8 +22,10 @@ async function routes(fastify, _options) {
         console.log(`Cell ${row} ${col} played by ${request.params.player}`)
         console.log(`Cell content: ${cell}`)
       }catch(err) {
-        if(err instanceof GameNotInProgress)
+        if(err instanceof GameNotInProgress) {
+          games.remove(gameId)
           return reply.send({ success: false, error: 'Game not in progress' })
+        }
       }
 
       reply.code(200).send({
