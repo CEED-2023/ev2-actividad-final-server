@@ -9,6 +9,7 @@ import delayMiddleware from './middleware/delay_middleware.js'
 
 import createGame from './routes/create_game_route.js'
 import revealCell from './routes/reveal_cell_route.js'
+import announcements from './routes/get_announcement.js'
 
 const fastify = Fastify({
   logger: true
@@ -29,6 +30,7 @@ fastify.addHook('onRequest', delayMiddleware(MIN_DELAY, MAX_DELAY, EXCEPTIONS))
 try {
   fastify.register(createGame)
   fastify.register(revealCell)
+  fastify.register(announcements)
 
   fastify.listen({ port: PORT, host: '0.0.0.0' })
 
